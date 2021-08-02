@@ -16,13 +16,11 @@ app.post("/titles", (req, res) => {
         res.status(401).send("Unauthorised, Incorrect headers");
     }
     else if (!req.body.titleReference || !req.body.matter) {
-        console.log({ r: req.body });
         res
             .status(500)
-            .send({ error: "Title reference and matter are required", r: req.body });
+            .send({ error: "Title reference and matter are required", body: req.body });
     }
     else {
-        console.log({ body: req.body });
         res.status(200).json({
             "lot/plan": req.body.titleReference,
             firstOwner: "Government Prop",
@@ -31,6 +29,9 @@ app.post("/titles", (req, res) => {
             matter: req.body.matter,
         });
     }
+});
+app.get("/error", (req, res) => {
+    return res.status(400).send({ error: "Force error" });
 });
 app.listen(port, () => {
     console.log(`running on port ${port}`);

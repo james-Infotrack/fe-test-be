@@ -41,6 +41,10 @@ app.post("/titles", (req, res) => {
   }
 });
 
+app.get("/error", (req, res) => {
+  return res.status(400).send({error: "Force error"});
+});
+
 app.listen(port, () => {
   console.log(`running on port ${port}`);
 });
