@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "node .",
+    "start": "node index.js",
+    "bs": "npx tsc --project ./ && node index.js",
     "build": "npx tsc --project ./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
