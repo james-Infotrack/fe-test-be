@@ -18,18 +18,18 @@ module.exports.api = async (event) => {
 module.exports.titles = async (event) => {
   const x = JSON.parse(event.body);
   const headers = event.headers;
-  console.log({ headers })
+
   try {
     if (
-      !event.headers.username === "infotrack" ||
-      !event.headers.password === "hiring"
+      headers.username !== "infotrack" ||
+      headers.password !== "hiring"
     ) {
       return {
         statusCode: 401,
         body: JSON.stringify(
           {
             status: "Unauthorised, Incorrect headers",
-            event,
+            headers,
           },
           null,
           2
@@ -42,7 +42,6 @@ module.exports.titles = async (event) => {
           {
             error: "Title reference and matter are required",
             body: x,
-            headers,
           },
           null,
           2
@@ -53,11 +52,10 @@ module.exports.titles = async (event) => {
       statusCode: 200,
       body: JSON.stringify(
         {
-          "lot/plan": x.titleReference,
           firstOwner: "Government Prop",
           LGA: "Sydney",
           Price: "26.40",
-          matter: x.matter,
+          ...x,
         },
         null,
         2
