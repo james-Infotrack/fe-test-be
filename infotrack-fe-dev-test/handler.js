@@ -7,7 +7,6 @@ module.exports.api = async (event) => {
       {
         username: "infotrack",
         password: "hiring",
-        input: event,
       },
       null,
       2
